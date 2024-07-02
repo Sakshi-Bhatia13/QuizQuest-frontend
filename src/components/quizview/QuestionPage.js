@@ -4,47 +4,36 @@ import axios from "axios";
 import { WhisperSpinner } from "react-spinners-kit";
 
 function QuestionRend({ setCorrectAnsw, setUserAnsw }) {
-  const [quizes, SetQuizes] = useState([]);
+  const [quizes, setQuizes] = useState([]);
   const uname = localStorage.getItem("userName");
-  const [one, setOne] = useState("");
-  const [two, setTwo] = useState("");
-  const [three, setThree] = useState("");
-  const [four, setFour] = useState("");
-  const [five, setFive] = useState("");
+  const [one, setOne] = useState(null);
+  const [two, setTwo] = useState(null);
+  const [three, setThree] = useState(null);
+  const [four, setFour] = useState(null);
+  const [five, setFive] = useState(null);
 
   async function fetchQuestion() {
     try {
-      const questions = await axios.get(
+      const response = await axios.get(
         "https://quizquest-backend-lg90.onrender.com/quiz/getQuiz"
       );
-      const quizArray = questions.data.result;
-      SetQuizes(quizArray);
-    } catch (e) {
-      console.error(e.message);
+      const quizArray = response.data.result;
+      setQuizes(quizArray);
+    } catch (error) {
+      console.error("Error fetching quiz questions:", error.message);
     }
   }
 
   useEffect(() => {
     fetchQuestion();
   }, []);
-  console.error("iam your quiz", quizes);
 
   function correctRend() {
-    let rightArr = [];
-    if (quizes.length > 1) {
-      let i = 0;
-      while (i < quizes.length) {
-        rightArr.push(quizes[i].correct_answer);
-        i++;
-      }
-    }
-    return rightArr;
+    return quizes.map((quiz) => quiz.correct_answer);
   }
 
   function userArray() {
-    let userSetArray = [];
-    userSetArray.splice(0, 0, one, two, three, four, five);
-    return userSetArray;
+    return [one, two, three, four, five];
   }
 
   useEffect(() => {
@@ -61,80 +50,28 @@ function QuestionRend({ setCorrectAnsw, setUserAnsw }) {
       <div className="question_card">
         {quizes.length > 0 ? (
           <>
-            <h5>{quizes[0].question}</h5>
-            <div
-              className="answer_sec"
-              onChange={(e) => setOne(e.target.value)}
-            >
-              {quizes[0].answers.map((item, index) => {
-                return (
-                  <div className="answers" key={index}>
-                    <input type="radio" name="one" id={item} value={item} />
-                    {item}
-                  </div>
-                );
-              })}
-            </div>
-
-            <h5>{quizes[1].question}</h5>
-            <div
-              className="answer_sec"
-              onChange={(e) => setTwo(e.target.value)}
-            >
-              {quizes[1].answers.map((item, index) => {
-                return (
-                  <div className="answers" key={index}>
-                    <input type="radio" name="two" id={item} value={item} />
-                    {item}
-                  </div>
-                );
-              })}
-            </div>
-
-            <h5>{quizes[2].question}</h5>
-            <div
-              className="answer_sec"
-              onChange={(e) => setThree(e.target.value)}
-            >
-              {quizes[2].answers.map((item, index) => {
-                return (
-                  <div className="answers" key={index}>
-                    <input type="radio" name="three" id={item} value={item} />
-                    {item}
-                  </div>
-                );
-              })}
-            </div>
-
-            <h5>{quizes[3].question}</h5>
-            <div
-              className="answer_sec"
-              onChange={(e) => setFour(e.target.value)}
-            >
-              {quizes[3].answers.map((item, index) => {
-                return (
-                  <div className="answers" key={index}>
-                    <input type="radio" name="four" id={item} value={item} />
-                    {item}
-                  </div>
-                );
-              })}
-            </div>
-
-            <h5>{quizes[4].question}</h5>
-            <div
-              className="answer_sec"
-              onChange={(e) => setFive(e.target.value)}
-            >
-              {quizes[4].answers.map((item, index) => {
-                return (
-                  <div className="answers" key={index}>
-                    <input type="radio" name="five" id={item} value={item} />
-                    {item}
-                  </div>
-                );
-              })}
-            </div>
+            {quizes.map((quiz, index) => (
+              <div key={index}>
+                <h5>{quiz.question}</h5>
+                <div className="answer_sec">
+                  {quiz.answers.map((answer, answerIndex) => (
+                    <div className="answers" key={answerIndex}>
+                      <input
+                        type="radio"
+                        name={`question_${index}`}
+                        id={answer}
+                        value={answer}
+                        checked={index === 0 ? one === answer : index === 1 ? two === answer : index === 2 ? three === answer : index === 3 ? four === answer : index === 4 ? five === answer : ""}
+                        onChange={(e) => {
+                          index === 0 ? setOne(e.target.value) : index === 1 ? setTwo(e.target.value) : index === 2 ? setThree(e.target.value) : index === 3 ? setFour(e.target.value) : setFive(e.target.value);
+                        }}
+                      />
+                      <label htmlFor={answer}>{answer}</label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </>
         ) : (
           <div className="d-flex justify-content-center align-items-center loader_spinner">

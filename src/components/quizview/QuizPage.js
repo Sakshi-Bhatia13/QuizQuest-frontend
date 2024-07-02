@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useCallback,useEffect } from "react";
 import "./QuizView.scss";
 import QuestionRend from "./QuestionPage";
-import { ResultCountUpdate, ResultCount } from "../../DataContext";
+import { ResultCountUpdate } from "../../DataContext";
 import { useNavigate } from "react-router-dom";
 
 function QuizPage() {
@@ -10,19 +10,24 @@ function QuizPage() {
   const setCount = ResultCountUpdate();
   const navigate = useNavigate();
 
-  function quizSubmit(e) {
+  const quizSubmit = useCallback((e) => {
     e.preventDefault();
     let marks = 0;
     for (let i = 0; i < userAnsw.length; i++) {
-
       if (userAnsw[i] === correctAnsw[i]) {
         marks = marks + 1;
       }
     }
-
     setCount(marks);
     navigate("/UserResult");
-  }
+  }, [userAnsw, correctAnsw, setCount, navigate]);
+
+
+  useEffect(() => {
+    if (correctAnsw.length > 0 && userAnsw.length === correctAnsw.length) {
+      quizSubmit(new Event("submit"));
+    }
+  }, [correctAnsw, userAnsw, quizSubmit]);
 
   return (
     <div className="quiz_view d-flex justify-content-center">

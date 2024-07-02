@@ -5,7 +5,7 @@ import "./Home.scss";
 function Home() {
   return (
     <div className="w-40 d-flex align-items-center justify-content-center">
-      <img src={img} alt="image" className="head" />
+      <img src={img} alt="ntg" className="head" />
     </div>
   );
 }

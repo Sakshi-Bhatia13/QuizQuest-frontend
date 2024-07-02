@@ -27,6 +27,7 @@ function AdminPanel() {
             answers: correctAnsArr,
           }
         );
+        console.log(sendData);
         alert("question is successfully added to database");
       } catch (e) {
         console.error(e.message);

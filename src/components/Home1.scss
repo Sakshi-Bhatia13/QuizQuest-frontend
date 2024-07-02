@@ -6,27 +6,27 @@ $theme_bg: rgb(235, 235, 235);
   justify-content: center;
   align-items: center;
 }
-.landing {
+.Home1 {
   height: 100vh;
   background: $theme_bg;
 }
-.landing_card {
+.Home1_card {
   background: white;
   height: 100vh;
 }
 @media only screen and (max-width: 800px) {
-  .landing_card {
+  .Home1_card {
     width: 100%;
   }
 }
-.landing_header {
+.Home1_header {
   text-align: center;
   h3 {
     font-family: "Maven Pro", sans-serif;
     color: rgb(80, 97, 97);
   }
 }
-.landing_header_text {
+.Home1_header_text {
   color: $theme_color;
   font-family: "Pacifico", cursive;
   &:hover {
@@ -48,7 +48,7 @@ $theme_bg: rgb(235, 235, 235);
     color: #6378d4;
   }
 }
-.landing_btns {
+.Home1_btns {
   border-radius: 50px;
   margin: 10px 20px;
   border: 2px solid $theme_color;
@@ -70,7 +70,7 @@ $theme_bg: rgb(235, 235, 235);
   }
 }
 
-.sign_modal_landing {
+.sign_modal_Home1 {
   display: none;
   position: fixed;
   padding: 5vw;

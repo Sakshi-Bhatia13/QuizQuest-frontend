@@ -1,4 +1,4 @@
-import React, { Component,useState } from "react";
+import React, {useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home1 from "./components/Home1";
 import QuizPage from "./components/quizview/QuizPage";
@@ -11,7 +11,7 @@ import Login from "./components/userAuth/Login";
 function App() {
     const [userName, setUserName] = useState(localStorage.getItem("userName") || "");
     const [userToken, setUserToken] = useState(localStorage.getItem("authToken") || "");
-    
+
   return (
     <div className="App">
       <Routes>
