@@ -15,7 +15,7 @@ function QuestionRend({ setCorrectAnsw, setUserAnsw }) {
   async function fetchQuestion() {
     try {
       const questions = await axios.get(
-        "http://localhost:5001/quiz/getQuiz"
+        "https://quizquest-backend-lg90.onrender.com/quiz/getQuiz"
       );
       const quizArray = questions.data.result;
       SetQuizes(quizArray);

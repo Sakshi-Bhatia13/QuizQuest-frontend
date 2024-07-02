@@ -22,7 +22,7 @@ function UserResult() {
   async function handleLboard(e) {
     try {
       const sendReg = await axios.post(
-        "http://localhost:5001/lboard/postleader",
+        "https://quizquest-backend-lg90.onrender.com/lboard/postleader",
         {
           name: uname,
           score: count,

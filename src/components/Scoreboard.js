@@ -9,7 +9,7 @@ function ScoreBoard() {
   async function getLeaderboard() {
     try {
       const leaderData = await axios.get(
-        "http://localhost:5001/lboard/getleader"
+        "https://quizquest-backend-lg90.onrender.com/lboard/getleader"
       );
       const leaderArray = leaderData.data.result;
       setLboard(leaderArray);

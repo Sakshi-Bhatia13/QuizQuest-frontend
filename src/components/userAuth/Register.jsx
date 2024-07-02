@@ -23,7 +23,7 @@ function Register({ upmodal, upModalClose }) {
     e.preventDefault();
     try {
       const sendTask = await axios.post(
-        "http://localhost:5001/userAuth/Register",
+        "https://quizquest-backend-lg90.onrender.com/userAuth/Register",
         {
           name: name,
           email: email,

@@ -17,7 +17,7 @@ function AdminPanel() {
     if (correctAnsArr.includes(correct_answer)) {
       try {
         const sendData = await axios.post(
-          "http://localhost:5001/quiz/postQuiz",
+          "https://quizquest-backend-lg90.onrender.com/quiz/postQuiz",
           {
             category: "Science: Computers",
             type: "multiple",

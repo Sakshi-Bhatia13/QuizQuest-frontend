@@ -6,7 +6,7 @@ import Register from "./userAuth/Register";
 import Login from "./userAuth/Login";
 import { useNavigate } from "react-router-dom";
 
-function Landing() {
+function Home1() {
   const [modal, setModal] = useState({});
   const [inmodal, setInModal] = useState({});
   const [upmodal, setUpModal] = useState({});
@@ -46,18 +46,18 @@ function Landing() {
   }
 
   return (
-    <div className="landing">
-      <div className="sign_modal_landing" style={modal}>
+    <div className="Home1">
+      <div className="sign_modal_Home1" style={modal}>
         <h5 className="mb-5">You don't have an account! Create one</h5>
-        <div className="landing_user_logs super_center">
+        <div className="Home1_user_logs super_center">
           <button
-            className="landing_btns theme_color"
+            className="Home1_btns theme_color"
             onClick={handleSignOpen}
           >
             Sign In
           </button>
           <button
-            className="landing_btns theme_color"
+            className="Home1_btns theme_color"
             onClick={handleClose}
           >
             Close <IoMdClose />
@@ -72,27 +72,27 @@ function Landing() {
         setUserToken={setUserToken}
       />
       <div className="row d-flex justify-content-center">
-        <div className="col-6 landing_card">
-          <div className="landing_header">
+        <div className="col-6 Home1_card">
+          <div className="Home1_header">
             <Home />
-            <h1 className="landing_header_text">Quiz Quest</h1>
+            <h1 className="Home1_header_text">Quiz Quest</h1>
             <h3>Online quiz platform</h3>
             <hr className="solid" />
           </div>
-          <div className="landing_card_body mt-5">
+          <div className="Home1_card_body mt-5">
             <div className="w-100 d-flex align-items-center justify-content-center">
               {userName ? <h5>Hi {userName}, now you can start the quiz.</h5> : " "}
             </div>
 
-            <div className="landing_user_logs super_center">
+            <div className="Home1_user_logs super_center">
               <button
-                className="landing_btns theme_color"
+                className="Home1_btns theme_color"
                 onClick={inModalOpen}
               >
                 Sign In
               </button>
               <button
-                className="landing_btns theme_color"
+                className="Home1_btns theme_color"
                 onClick={upModalOpen}
               >
                 Sign Up
@@ -100,7 +100,7 @@ function Landing() {
             </div>
             <div className="super_center mt-3">
               <button
-                className="landing_btns anti_theme_color"
+                className="Home1_btns anti_theme_color"
                 onClick={handlePlay}
               >
                 Play Quiz
@@ -113,4 +113,4 @@ function Landing() {
   );
 }
 
-export default Landing;
+export default Home1;
